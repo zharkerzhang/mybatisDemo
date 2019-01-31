@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zharker.mybatis.mapper.WeatherMapper" >
+  <resultMap id="BaseResultMap" type="com.zharker.mybatis.entity.Weather" >
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="temp_lo" property="tempLo" jdbcType="INTEGER" />
+    <result column="temp_hi" property="tempHi" jdbcType="INTEGER" />
+    <result column="prcp" property="prcp" jdbcType="REAL" />
+    <result column="date" property="date" jdbcType="DATE" />
+  </resultMap>
+  <insert id="insert" parameterType="com.zharker.mybatis.entity.Weather" >
+    insert into weather (city, temp_lo, temp_hi, 
+      prcp, date)
+    values (#{city,jdbcType=VARCHAR}, #{tempLo,jdbcType=INTEGER}, #{tempHi,jdbcType=INTEGER}, 
+      #{prcp,jdbcType=REAL}, #{date,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zharker.mybatis.entity.Weather" >
+    insert into weather
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="tempLo != null" >
+        temp_lo,
+      </if>
+      <if test="tempHi != null" >
+        temp_hi,
+      </if>
+      <if test="prcp != null" >
+        prcp,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="tempLo != null" >
+        #{tempLo,jdbcType=INTEGER},
+      </if>
+      <if test="tempHi != null" >
+        #{tempHi,jdbcType=INTEGER},
+      </if>
+      <if test="prcp != null" >
+        #{prcp,jdbcType=REAL},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+</mapper>

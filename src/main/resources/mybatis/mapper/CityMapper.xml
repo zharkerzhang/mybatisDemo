@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zharker.mybatis.mapper.CityMapper" >
+  <resultMap id="BaseResultMap" type="com.zharker.mybatis.entity.City" >
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="location" property="location" jdbcType="OTHER" />
+    <result column="altitude" property="altitude" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="com.zharker.mybatis.entity.City" >
+    insert into cities (name, location, altitude
+      )
+    values (#{name,jdbcType=VARCHAR}, #{location,jdbcType=OTHER}, #{altitude,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zharker.mybatis.entity.City" >
+    insert into cities
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="location != null" >
+        location,
+      </if>
+      <if test="altitude != null" >
+        altitude,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=OTHER},
+      </if>
+      <if test="altitude != null" >
+        #{altitude,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="getCity" parameterType="java.lang.String"
+          resultType="com.zharker.mybatis.entity.City">
+    select * from cities where name = #{name}
+  </select>
+
+</mapper>

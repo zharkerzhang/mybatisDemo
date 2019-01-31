@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <properties resource="generator-jdbc.properties"/>
+    <!-- 数据库驱动 -->
+    <classPathEntry
+            location="C:\tools\PostgreSQL\driver\postgresql-42.2.5.jar"/>
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <jdbcConnection driverClass="${jdbc.driver}"
+                        connectionURL="${jdbc.url}" userId="${jdbc.username}" password="${jdbc.password}">
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <javaModelGenerator targetPackage="com.zharker.mybatis.entity"
+                            targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!-- 生成映射文件的包名和位置XML文件 -->
+        <sqlMapGenerator targetPackage="mybatis.mapper"
+                         targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!-- 生成DAO的包名和位置 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.zharker.mybatis.mapper" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <!-- 要生成哪些表 -->
+        <!-- tableName:用于自动生成代码的数据库表；domainObjectName:对应于数据库表的javaBean类名 -->
+        <table tableName="weather"
+               domainObjectName="Weather"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+
+        <table tableName="cities" domainObjectName="City"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+    </context>
+</generatorConfiguration>
