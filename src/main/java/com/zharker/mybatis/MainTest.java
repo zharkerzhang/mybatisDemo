@@ -14,7 +14,14 @@ public class MainTest {
         SqlSession session = sessionFactory.openSession();
         String statement = "com.zharker.mybatis.mapper.CityMapper.getCity";
         session.selectList(statement, "San Francisco").forEach(System.out::println);
-        
-        System.out.println("233333");
+
+        try {
+            Thread.sleep(50000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("exit");
+
+		System.out.println("233333");
     }
 }
