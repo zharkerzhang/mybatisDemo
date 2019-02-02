@@ -22,7 +22,10 @@ public class MainTest {
         }
         System.out.println("exit");
 
+		System.out.println("233333");
+
         System.out.println("333333");
+
 
     }
 }
